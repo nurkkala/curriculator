@@ -54,6 +54,7 @@ class Course(models.Model):
     credit_hours = models.IntegerField()
     name = models.CharField(max_length=256)
     learning_outcomes = models.ManyToManyField(LearningOutcome, related_name='courses')
+    completed = models.BooleanField()
 
     class Meta:
         ordering = [ 'designation' ]
@@ -61,4 +62,6 @@ class Course(models.Model):
     def __unicode__(self):
         return "{} - {}".format(self.designation, self.name)
 
-
+    def sorted_outcomes(self):
+        return self.learning_outcomes.order_by('knowledge_unit',
+                                               'knowledge_unit__knowledge_area').all()

@@ -1,10 +1,10 @@
 {% extends "cs2013/base.html" %}
 
-{% block title %}Select a Course{% endblock %}
+{% block title %}Course Listing{% endblock %}
 
 {% block content %}
   <div class="page-header">
-    <h1>Choose Course</h1>
+    <h1>Courses</h1>
   </div>
 
   <table class="table table-striped table-hover">
@@ -12,6 +12,9 @@
       <tr>
         <th>Designation</th>
 	<th>Name</th>
+	<th>Outcomes</th>
+	<th>Status</th>
+	<th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +24,19 @@
 	    <a href="{% url 'outcomes' course.pk 1 %}">{{ course.designation }}</a>
 	  </td>
 	  <td>{{ course.name }}</td>
+	  <td>
+	    {% if course.learning_outcomes.count %}{{ course.learning_outcomes.count }}{% endif %}
+	  </td>
+	  <td>
+	    {% if course.completed %}
+              <span class="label label-success">Complete</span>
+	    {% elif course.learning_outcomes.count %}
+              <span class="label label-warning">Partial</span>
+	    {% endif %}
+	  </td>
+	  <td>
+            <a class="btn btn-primary btn-xs" href="{% url 'details' course.pk %}">Details</a>
+	  </td>
 	</tr>
       {% endfor %}
     </tbody>

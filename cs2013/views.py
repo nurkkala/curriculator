@@ -21,11 +21,12 @@ def outcomes(request, course_pk, page):
     if request.method == 'POST':
         # Update to database
         for outcome_pk in request.POST.getlist('outcome-pk'):
-            print outcome_pk
             outcome = LearningOutcome.objects.get(pk=outcome_pk)
             course.learning_outcomes.add(outcome)
 
         if page == page_count:
+            course.completed = True
+            course.save()
             return redirect('home')
         else:
             page += 1
@@ -44,3 +45,14 @@ def outcomes(request, course_pk, page):
                     'page_count': page_count,
                     'percent': "{:.0f}%".format(page / page_count * 100)
                 })
+
+@login_required
+def details(request, course_pk):
+    return render(request, 'cs2013/details.html',
+                  { 'course': Course.objects.get(pk=course_pk) })
+
+def remove_outcome(request, course_pk, outcome_pk):
+    course = Course.objects.get(pk=course_pk)
+    outcome = LearningOutcome.objects.get(pk=outcome_pk)
+    course.learning_outcomes.remove(outcome)
+    return redirect('details', course_pk)

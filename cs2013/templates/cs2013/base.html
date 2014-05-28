@@ -21,11 +21,18 @@
     <div class="container">
       <nav class="navebar navbar-default" role="navigation">
 	<div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'home' %}">Curriculator</a>
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'home' %}">Curriculator</a>
+	  </div>
+          <ul class="nav navbar-nav">
+	    <li>
+	      <a href="{% url 'home' %}">All Courses</a>
+	    </li>
+          </ul>
           <ul class="nav navbar-nav navbar-right">
 	    <li>
 	      {% if user.is_authenticated %}
-	      <a href="{% url 'logout' %}">Log out</a>
+	      <a href="{% url 'logout' %}">Log out {{ user }}</a>
 	      {% else %}
 	      <a href="{% url 'login' %}">Log in</a>
 	      {% endif %}

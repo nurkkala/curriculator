@@ -13987,6 +13987,7 @@
     "pk": 1, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 2, 
         "name": "Computing and Culture", 
         "designation": "COS 104/6", 
@@ -13997,6 +13998,7 @@
     "pk": 2, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 1, 
         "name": "Ethics, Computing, and Society", 
         "designation": "COS 105", 
@@ -14007,6 +14009,7 @@
     "pk": 3, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 4, 
         "name": "Introduction to Computational Problem Solving", 
         "designation": "COS 120", 
@@ -14017,6 +14020,7 @@
     "pk": 4, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 4, 
         "name": "Foundations of Computer Science", 
         "designation": "COS 121", 
@@ -14027,6 +14031,7 @@
     "pk": 5, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Interactive Web Page Design", 
         "designation": "COS 143", 
@@ -14037,6 +14042,7 @@
     "pk": 6, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Missions Technology", 
         "designation": "COS 230", 
@@ -14047,6 +14053,7 @@
     "pk": 7, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Multi-tier Web Application Development", 
         "designation": "COS 243", 
@@ -14057,6 +14064,7 @@
     "pk": 8, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Data Structures and Algorithms", 
         "designation": "COS 265", 
@@ -14067,6 +14075,7 @@
     "pk": 9, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Introduction to Artificial Intelligence", 
         "designation": "COS 280", 
@@ -14077,6 +14086,7 @@
     "pk": 10, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Introduction to Computer Systems", 
         "designation": "COS 284", 
@@ -14087,6 +14097,7 @@
     "pk": 11, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 1, 
         "name": "Current Literature Survey", 
         "designation": "COS 310", 
@@ -14097,6 +14108,7 @@
     "pk": 12, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 2, 
         "name": "Ethics in Computer Science", 
         "designation": "COS 311", 
@@ -14107,6 +14119,7 @@
     "pk": 13, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Human Computer Interaction", 
         "designation": "COS 314", 
@@ -14117,6 +14130,7 @@
     "pk": 14, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Algorithm Design", 
         "designation": "COS 320", 
@@ -14127,6 +14141,7 @@
     "pk": 15, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Ethics and Technology", 
         "designation": "COS 321", 
@@ -14137,6 +14152,7 @@
     "pk": 16, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Data Communications", 
         "designation": "COS 331", 
@@ -14147,6 +14163,7 @@
     "pk": 17, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Software Engineering", 
         "designation": "COS 340", 
@@ -14157,6 +14174,7 @@
     "pk": 18, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Information Security", 
         "designation": "COS 342", 
@@ -14167,6 +14185,7 @@
     "pk": 19, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Advanced Database Concepts", 
         "designation": "COS 343", 
@@ -14177,6 +14196,7 @@
     "pk": 20, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Computer Graphics", 
         "designation": "COS 350", 
@@ -14187,6 +14207,7 @@
     "pk": 21, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Computer Vision", 
         "designation": "COS 351", 
@@ -14197,6 +14218,7 @@
     "pk": 22, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Missions Computing", 
         "designation": "COS 370", 
@@ -14207,6 +14229,7 @@
     "pk": 23, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 4, 
         "name": "Software Studio I", 
         "designation": "COS 371", 
@@ -14217,6 +14240,7 @@
     "pk": 24, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 4, 
         "name": "Software Studio II", 
         "designation": "COS 372", 
@@ -14227,6 +14251,7 @@
     "pk": 25, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Natural Language Processing", 
         "designation": "COS 380", 
@@ -14237,6 +14262,7 @@
     "pk": 26, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Computer Architecture", 
         "designation": "COS 381", 
@@ -14247,6 +14273,7 @@
     "pk": 27, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Language Structures", 
         "designation": "COS 382", 
@@ -14257,6 +14284,7 @@
     "pk": 28, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 4, 
         "name": "Practicum", 
         "designation": "COS 393", 
@@ -14267,6 +14295,7 @@
     "pk": 29, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Operating Systems", 
         "designation": "COS 421", 
@@ -14277,6 +14306,7 @@
     "pk": 30, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Surfaces and Modeling", 
         "designation": "COS 424", 
@@ -14287,6 +14317,7 @@
     "pk": 31, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Animation", 
         "designation": "COS 425", 
@@ -14297,6 +14328,7 @@
     "pk": 32, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Theory of Computation", 
         "designation": "COS 435", 
@@ -14307,6 +14339,7 @@
     "pk": 33, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Distributed Processing", 
         "designation": "COS 436", 
@@ -14317,6 +14350,7 @@
     "pk": 34, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Research I", 
         "designation": "COS 452", 
@@ -14327,6 +14361,7 @@
     "pk": 35, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Research II", 
         "designation": "COS 453", 
@@ -14337,6 +14372,7 @@
     "pk": 36, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 4, 
         "name": "Software Studio III", 
         "designation": "COS 471", 
@@ -14347,6 +14383,7 @@
     "pk": 37, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 4, 
         "name": "Software Studio IV", 
         "designation": "COS 472", 
@@ -14357,6 +14394,7 @@
     "pk": 38, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 2, 
         "name": "Senior Engineering Project I", 
         "designation": "COS 491", 
@@ -14367,6 +14405,7 @@
     "pk": 39, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Senior Project", 
         "designation": "COS 492", 
@@ -14377,6 +14416,7 @@
     "pk": 40, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 1, 
         "name": "Computer Science Senior Capstone", 
         "designation": "COS 493", 
@@ -14387,6 +14427,7 @@
     "pk": 41, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Senior Engineering Project II", 
         "designation": "COS 494", 
@@ -14397,6 +14438,7 @@
     "pk": 42, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 1, 
         "name": "Senior Engineering Project III", 
         "designation": "COS 495", 
@@ -14407,6 +14449,7 @@
     "pk": 43, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Human Relations in Organizations", 
         "designation": "IAS 330", 
@@ -14417,6 +14460,7 @@
     "pk": 44, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Introduction to Systems", 
         "designation": "SYS 101", 
@@ -14427,6 +14471,7 @@
     "pk": 45, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Principles of Human Computer Interaction", 
         "designation": "SYS 214", 
@@ -14437,6 +14482,7 @@
     "pk": 46, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "E-Commerce", 
         "designation": "SYS 310", 
@@ -14447,6 +14493,7 @@
     "pk": 47, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Economic Decision Analysis", 
         "designation": "SYS 320", 
@@ -14457,6 +14504,7 @@
     "pk": 48, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Knowledge Based Systems", 
         "designation": "SYS 352", 
@@ -14467,6 +14515,7 @@
     "pk": 49, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Information Systems Analysis", 
         "designation": "SYS 390", 
@@ -14477,6 +14526,7 @@
     "pk": 50, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 1, 
         "name": "Systems Seminar", 
         "designation": "SYS 392", 
@@ -14487,6 +14537,7 @@
     "pk": 51, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 4, 
         "name": "Practicum", 
         "designation": "SYS 393", 
@@ -14497,6 +14548,7 @@
     "pk": 52, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 4, 
         "name": "Information Systems Design", 
         "designation": "SYS 394", 
@@ -14507,6 +14559,7 @@
     "pk": 53, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Operations Research", 
         "designation": "SYS 401", 
@@ -14517,6 +14570,7 @@
     "pk": 54, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Modeling and Simulation", 
         "designation": "SYS 402", 
@@ -14527,6 +14581,7 @@
     "pk": 55, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Operations Management", 
         "designation": "SYS 403", 
@@ -14537,6 +14592,7 @@
     "pk": 56, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Operations Research II", 
         "designation": "SYS 405", 
@@ -14547,6 +14603,7 @@
     "pk": 57, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 2, 
         "name": "Fundamentals of Quality Management", 
         "designation": "SYS 410", 
@@ -14557,6 +14614,7 @@
     "pk": 58, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Machine Learning", 
         "designation": "SYS 411", 
@@ -14567,6 +14625,7 @@
     "pk": 59, 
     "model": "cs2013.course", 
     "fields": {
+        "completed": false, 
         "credit_hours": 3, 
         "name": "Discrete Mathematics for Computer Science", 
         "designation": "MAT 215", 
