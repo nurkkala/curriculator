@@ -3,68 +3,69 @@
 {% block title %}Outcomes for {{ course.designation }}{% endblock %}
 
 {% block content %}
-  <div class="container">
-    <div class="page-header">
-      <h1>Outcomes for {{ course.designation }} <small>{{ course.name }}</small></h1>
-    </div>
-
-    <dl class="dl-horizontal">
-      <dt>Familiarity</dt>
-      <dd>Student understands what a concept is or what it means.
-	<i>What do you know about this?</i></dd>
-      <dt>Usage</dt>
-      <dd>Student is able to use or apply a concept in a concrete way.
-	<i>What do you know how to do?</i></dd>
-      <dt>Assessment</dt>
-      <dd>Student able to consider concept from multiple viewpoints;
-	justify selection of particular approach to solve problem.
-	<i>Why would you do that?</i></dd>
-    </dl>
-
-    <h2>{{ know_area }} - Tier {{ tier }}</h2>
-
-    <form role="form" method="post" action="{% url 'outcomes' course.pk page %}">
-      {% csrf_token %}
-      <table class="table table-striped table-hover">
-	<thead>
-          <tr>
-	    <th>Knowledge Unit</th>
-	    <th>Description (Mastery Level)</th>
-          </tr>
-	</thead>
-	<tbody>
-	  {% for outcome in outcomes %}
-	    <tr>
-	      <th>
-		{% ifchanged %}{{ outcome.knowledge_unit }}{% endifchanged %}
-	      </th>
-	      <td>
-		<div class="checkbox">
-		  <label>
-		    <input type="checkbox" name="outcome-pk" value="{{ outcome.pk }}">
-		    {{ outcome.description }}
-		    ({{ outcome.get_mastery_level_display }})
-		  </label>
-		</div>
-	      </td>
-	    </tr>
-	  {% empty %}
-	    <tr>
-	      <td colspan="2">No Outcomes for {{ know_area }} in Tier {{ tier }}</td>
-	    </tr>
-	  {% endfor %}
-	</tbody>
-      </table>
-      <div class="form-group">
-	<div class="progress progress-striped">
-	  <div class="progress-bar" role="progressbar" style="width: {{ percent }};">
-	    {{ percent }}
-	  </div>
-	</div>
-	<button type="submit" class="btn btn-primary">
-	  {% ifequal page page_count %}Finish{% else %}Next{% endifequal %}
-	</button>
-      </div>
-    </form>
+  <div class="page-header">
+    <h1>Outcomes for {{ course.designation }} <small>{{ course.name }}</small></h1>
   </div>
+
+  <dl class="dl-horizontal">
+    <dt>Familiarity</dt>
+    <dd>Student understands what a concept is or what it means.
+      <i>What do you know about this?</i></dd>
+    <dt>Usage</dt>
+    <dd>Student is able to use or apply a concept in a concrete way.
+      <i>What do you know how to do?</i></dd>
+    <dt>Assessment</dt>
+    <dd>Student able to consider concept from multiple viewpoints;
+      justify selection of particular approach to solve problem.
+      <i>Why would you do that?</i></dd>
+  </dl>
+
+  <h2>{{ know_area }} - Tier {{ tier }}</h2>
+
+  <form role="form" method="post" action="{% url 'outcomes' course.pk page %}">
+    {% csrf_token %}
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+	  <th>Knowledge Unit</th>
+	  <th>Description (Mastery Level)</th>
+        </tr>
+      </thead>
+      <tbody>
+	{% for outcome in outcomes %}
+	  <tr>
+	    <th>
+	      {% ifchanged %}{{ outcome.knowledge_unit }}{% endifchanged %}
+	    </th>
+	    <td>
+	      <div class="checkbox">
+		<label>
+		  <input type="checkbox"
+			 {% if course in outcome.courses.all %}checked{% endif %}
+			 name="outcome-pk"
+			 value="{{ outcome.pk }}">
+			 {{ outcome.description }}
+			 ({{ outcome.get_mastery_level_display }})
+		</label>
+	      </div>
+	    </td>
+	  </tr>
+	{% empty %}
+	  <tr>
+	    <td colspan="2">No Outcomes for {{ know_area }} in Tier {{ tier }}</td>
+	  </tr>
+	{% endfor %}
+      </tbody>
+    </table>
+    <div class="form-group">
+      <div class="progress progress-striped">
+	<div class="progress-bar" role="progressbar" style="width: {{ percent }};">
+	  {{ percent }}
+	</div>
+      </div>
+      <button type="submit" class="btn btn-primary">
+	{% ifequal page page_count %}Finish{% else %}Next{% endifequal %}
+      </button>
+    </div>
+  </form>
 {% endblock %}

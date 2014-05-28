@@ -18,7 +18,26 @@
     <![endif]-->
   </head>
   <body>
-    {% block content %}Your Content Here{% endblock %}
+    <div class="container">
+      <nav class="navebar navbar-default" role="navigation">
+	<div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">Curriculator</a>
+          <ul class="nav navbar-nav navbar-right">
+	    <li>
+	      {% if user.is_authenticated %}
+	      <a href="{% url 'logout' %}">Log out</a>
+	      {% else %}
+	      <a href="{% url 'login' %}">Log in</a>
+	      {% endif %}
+	    </li>
+	  </ul>
+	</div>
+      </nav>
+
+      {% block content %}
+      Your Content Here
+      {% endblock %}
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

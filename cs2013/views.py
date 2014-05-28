@@ -1,13 +1,16 @@
 from __future__ import division
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .models import *
 
+@login_required
 def home(request):
     return render(request, 'cs2013/home.html',
                   { 'courses': Course.objects.all() })
 
+@login_required
 def outcomes(request, course_pk, page):
     course = Course.objects.get(pk=course_pk)
     know_areas = KnowledgeArea.objects.all()
