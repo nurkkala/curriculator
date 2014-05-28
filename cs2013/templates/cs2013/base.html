@@ -22,11 +22,14 @@
       <nav class="navebar navbar-default" role="navigation">
 	<div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'home' %}">Curriculator</a>
+            <a class="navbar-brand" href="{% url 'all-courses' %}">Curriculator</a>
 	  </div>
           <ul class="nav navbar-nav">
 	    <li>
-	      <a href="{% url 'home' %}">All Courses</a>
+	      <a href="{% url 'all-courses' %}">All Courses</a>
+	    </li>
+	    <li>
+	      <a href="{% url 'all-outcomes' %}">All Outcomes</a>
 	    </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

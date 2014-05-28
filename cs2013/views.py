@@ -11,7 +11,11 @@ def home(request):
                   { 'courses': Course.objects.all() })
 
 @login_required
-def outcomes(request, course_pk, page):
+def all_outcomes(request):
+    return render(request, 'cs2013/all_outcomes.html')
+
+@login_required
+def course_outcomes(request, course_pk, page):
     course = Course.objects.get(pk=course_pk)
     know_areas = KnowledgeArea.objects.all()
     outcome_selectors = [ { 'area': area, 'tier': t } for t in [ 1, 2 ] for area in know_areas ]
@@ -47,10 +51,11 @@ def outcomes(request, course_pk, page):
                 })
 
 @login_required
-def details(request, course_pk):
+def course_details(request, course_pk):
     return render(request, 'cs2013/details.html',
                   { 'course': Course.objects.get(pk=course_pk) })
 
+@login_required
 def remove_outcome(request, course_pk, outcome_pk):
     course = Course.objects.get(pk=course_pk)
     outcome = LearningOutcome.objects.get(pk=outcome_pk)

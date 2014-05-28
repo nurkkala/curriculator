@@ -5,7 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
-    url(r'^$', 'cs2013.views.home', name='home'),
+    url(r'^$', 'cs2013.views.home', name='all-courses'),
     url(r'^cs2013/', include('cs2013.urls')),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='login'),

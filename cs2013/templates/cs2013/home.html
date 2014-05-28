@@ -21,7 +21,7 @@
       {% for course in courses %}
 	<tr>
 	  <td>
-	    <a href="{% url 'outcomes' course.pk 1 %}">{{ course.designation }}</a>
+	    <a href="{% url 'course-outcomes' course.pk 1 %}">{{ course.designation }}</a>
 	  </td>
 	  <td>{{ course.name }}</td>
 	  <td>
@@ -35,7 +35,7 @@
 	    {% endif %}
 	  </td>
 	  <td>
-            <a class="btn btn-primary btn-xs" href="{% url 'details' course.pk %}">Details</a>
+            <a class="btn btn-primary btn-xs" href="{% url 'course-details' course.pk %}">Details</a>
 	  </td>
 	</tr>
       {% endfor %}
