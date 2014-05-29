@@ -11,6 +11,12 @@ class KnowledgeArea(models.Model):
     def __unicode__(self):
         return self.name
 
+    def all_outcomes(self):
+        return LearningOutcome.objects \
+                              .filter(knowledge_unit__knowledge_area=self) \
+                              .order_by('knowledge_unit', 'seq')
+
+
     def tier_n_outcomes(self, n):
         return LearningOutcome.objects \
                               .filter(tier=n, knowledge_unit__knowledge_area=self) \
@@ -48,6 +54,9 @@ class LearningOutcome(models.Model):
     def __unicode__(self):
         return self.description
 
+    def knowledge_area(self):
+        return self.knowledge_unit.knowledge_area
+
 
 class Course(models.Model):
     designation = models.CharField(max_length=256)
@@ -65,3 +74,6 @@ class Course(models.Model):
     def sorted_outcomes(self):
         return self.learning_outcomes.order_by('knowledge_unit',
                                                'knowledge_unit__knowledge_area').all()
+
+    def unbreakable_designation(self):
+        return self.designation.replace(' ', '&nbsp;')

@@ -11,8 +11,11 @@ def home(request):
                   { 'courses': Course.objects.all() })
 
 @login_required
-def all_outcomes(request):
-    return render(request, 'cs2013/all_outcomes.html')
+def know_area(request, area_pk):
+    return render(request, 'cs2013/know_areas.html',
+                  { 'all_areas': KnowledgeArea.objects.all(),
+                    'selected_area': KnowledgeArea.objects.get(pk=area_pk),
+                    'all_courses': Course.objects.all() })
 
 @login_required
 def course_outcomes(request, course_pk, page):
@@ -31,7 +34,7 @@ def course_outcomes(request, course_pk, page):
         if page == page_count:
             course.completed = True
             course.save()
-            return redirect('home')
+            return redirect('all-courses')
         else:
             page += 1
 
@@ -60,4 +63,16 @@ def remove_outcome(request, course_pk, outcome_pk):
     course = Course.objects.get(pk=course_pk)
     outcome = LearningOutcome.objects.get(pk=outcome_pk)
     course.learning_outcomes.remove(outcome)
-    return redirect('details', course_pk)
+    return redirect('course-details', course_pk)
+
+def add_outcome(request):
+    course_pk = request.POST['course_pk']
+    outcome_pk = request.POST['outcome_pk']
+    print "PKS", course_pk, outcome_pk
+
+    course = Course.objects.get(pk=course_pk)
+    outcome = LearningOutcome.objects.get(pk=outcome_pk)
+    print "CO", course, outcome
+
+    course.learning_outcomes.add(outcome)
+    return redirect('course-details', course_pk)

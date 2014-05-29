@@ -22,7 +22,7 @@
 
   <h2>{{ know_area }} - Tier {{ tier }}</h2>
 
-  <form role="form" method="post" action="{% url 'outcomes' course.pk page %}">
+  <form role="form" method="post" action="{% url 'course-outcomes' course.pk page %}">
     {% csrf_token %}
     <table class="table table-striped table-hover">
       <thead>

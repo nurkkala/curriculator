@@ -11,7 +11,7 @@
     <thead>
       <tr>
 	<th>Knowledge Area</th>
-	<th>Knowlege Unit</th>
+	<th>Knowledge Unit</th>
 	<th>Outcome</th>
 	<th>Action</th>
       </tr>
@@ -19,18 +19,25 @@
     <tbody>
       {% for outcome in course.sorted_outcomes %}
 	<tr>
-	  <th>{% ifchanged %}{{ outcome.knowledge_unit.knowledge_area }}{% endifchanged %}</th>
+	  <th>
+	    {% ifchanged %}
+	      <a href="{% url 'know-area' outcome.knowledge_area.pk %}">
+		{{ outcome.knowledge_area }}</a>
+	    {% endifchanged %}
+	  </th>
 	  <th>{% ifchanged %}{{ outcome.knowledge_unit }}{% endifchanged %}</th>
 	  <td>{{ outcome.description }}</td>
 	  <td>
-            <a class="btn btn-danger btn-xs" href="{% url 'remove' course.pk outcome.pk %}">Remove</a>
+            <a class="btn btn-danger btn-xs"
+	       href="{% url 'remove-outcome' course.pk outcome.pk %}">Remove</a>
 	  </td>
 	</tr>
       {% empty %}
 	<tr>
 	  <td colspan="3">No outcomes defined for this course</td>
 	  <td>
-	    <a class="btn btn-primary btn-xs" href="{% url 'outcomes' course.pk 1 %}">Add Outcomes</a>
+	    <a class="btn btn-primary btn-xs"
+	       href="{% url 'course-outcomes' course.pk 1 %}">Add Outcomes</a>
 	  </td>
 	</tr>
       {% endfor %}

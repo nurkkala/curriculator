@@ -26,10 +26,10 @@
 	  </div>
           <ul class="nav navbar-nav">
 	    <li>
-	      <a href="{% url 'all-courses' %}">All Courses</a>
+	      <a href="{% url 'all-courses' %}">Courses</a>
 	    </li>
 	    <li>
-	      <a href="{% url 'all-outcomes' %}">All Outcomes</a>
+	      <a href="{% url 'know-area' 1 %}">Knowledge Areas</a>
 	    </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -53,6 +53,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    {% block extra-javascript %}
+    <!-- Extra Javascript -->
+    {% endblock %}
+
   </body>
 </html>
 
