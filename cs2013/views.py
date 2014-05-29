@@ -1,6 +1,7 @@
 from __future__ import division
 
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from .models import *
@@ -68,11 +69,9 @@ def remove_outcome(request, course_pk, outcome_pk):
 def add_outcome(request):
     course_pk = request.POST['course_pk']
     outcome_pk = request.POST['outcome_pk']
-    print "PKS", course_pk, outcome_pk
 
     course = Course.objects.get(pk=course_pk)
     outcome = LearningOutcome.objects.get(pk=outcome_pk)
-    print "CO", course, outcome
 
     course.learning_outcomes.add(outcome)
-    return redirect('course-details', course_pk)
+    return HttpResponse("Added outcome {} to course {}".format(outcome_pk, course_pk))
