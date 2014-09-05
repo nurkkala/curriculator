@@ -20,7 +20,7 @@
       <i>Why would you do that?</i></dd>
   </dl>
 
-  <h2>{{ know_area }} - Tier {{ tier }}</h2>
+  <h2>{{ know_area }} - {{ tier_display }}</h2>
 
   <form role="form" method="post" action="{% url 'course-outcomes' course.pk page %}">
     {% csrf_token %}
@@ -52,7 +52,7 @@
 	  </tr>
 	{% empty %}
 	  <tr>
-	    <td colspan="2">No Outcomes for {{ know_area }} in Tier {{ tier }}</td>
+	    <td colspan="2">No Outcomes for {{ know_area }} in {{ tier_display }}</td>
 	  </tr>
 	{% endfor %}
       </tbody>

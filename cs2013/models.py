@@ -16,7 +16,6 @@ class KnowledgeArea(models.Model):
                               .filter(knowledge_unit__knowledge_area=self) \
                               .order_by('knowledge_unit', 'seq')
 
-
     def tier_n_outcomes(self, n):
         return LearningOutcome.objects \
                               .filter(tier=n, knowledge_unit__knowledge_area=self) \
@@ -37,7 +36,7 @@ class LearningOutcome(models.Model):
     TIER_CHOICES = (
         (1, 'Tier 1'),
         (2, 'Tier 2'),
-        (3, 'Elective') )
+        (3, 'Electives') )
     MASTERY_CHOICES = (
         ('F', 'Familiarity'),
         ('U', 'Usage'),
@@ -50,6 +49,14 @@ class LearningOutcome(models.Model):
 
     class Meta:
         ordering = [ 'seq' ]
+
+    @classmethod
+    def tier_display(cls, n):
+        """Return the human-readable name for tier n."""
+        for pair in cls.TIER_CHOICES:
+            if pair[0] == n:
+                return pair[1]
+        return "UNKNOWN"
 
     def __unicode__(self):
         return self.description

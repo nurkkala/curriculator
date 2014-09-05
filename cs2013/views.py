@@ -22,7 +22,7 @@ def know_area(request, area_pk):
 def course_outcomes(request, course_pk, page):
     course = Course.objects.get(pk=course_pk)
     know_areas = KnowledgeArea.objects.all()
-    outcome_selectors = [ { 'area': area, 'tier': t } for t in [ 1, 2 ] for area in know_areas ]
+    outcome_selectors = [ { 'area': area, 'tier': t } for t in [ 1, 2, 3 ] for area in know_areas ]
     page_count = len(outcome_selectors)
     page = max(1, min(int(page), page_count))
 
@@ -47,7 +47,7 @@ def course_outcomes(request, course_pk, page):
     return render(request, 'cs2013/outcomes.html',
                   { 'course': course,
                     'know_area': know_area,
-                    'tier': tier,
+                    'tier_display': LearningOutcome.tier_display(tier),
                     'outcomes': outcomes,
                     'page': page,
                     'page_count': page_count,
