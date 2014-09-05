@@ -12,6 +12,7 @@
       <tr>
 	<th>Knowledge Area</th>
 	<th>Knowledge Unit</th>
+	<th>Tier</th>
 	<th>Outcome</th>
 	<th>Action</th>
       </tr>
@@ -26,6 +27,7 @@
 	    {% endifchanged %}
 	  </th>
 	  <th>{% ifchanged %}{{ outcome.knowledge_unit }}{% endifchanged %}</th>
+	  <th>{{ outcome.get_tier_display }}</th>
 	  <td>{{ outcome.description }}</td>
 	  <td>
             <a class="btn btn-danger btn-xs"
