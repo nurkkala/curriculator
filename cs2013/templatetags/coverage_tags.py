@@ -2,25 +2,38 @@ from django import template
 
 register = template.Library()
 
-@register.simple_tag
-def coverage_data(coverage, tier=None):
-    if coverage.total(tier):
-        return "{}/{}".format(coverage.covered(tier),
-                              coverage.total(tier))
+def _coverage_fraction(covered, total):
+    if total:
+        return "{}/{}".format(covered, total)
     else:
         return "--"
 
-
-@register.simple_tag
-def coverage_class(coverage, tier=None):
-    cov = coverage.covered(tier)
-    tot = coverage.total(tier)
-
-    if tot == 0:
+def _coverage_class(covered, total):
+    if total == 0:
         return ""
-    elif cov == 0:
+    elif covered == 0:
         return "bg-danger"
-    elif cov < tot:
+    elif covered < total:
         return "bg-warning"
     else:
         return "bg-success"
+
+@register.simple_tag
+def unit_coverage_fraction(unit_coverage, tier=None):
+    return _coverage_fraction(unit_coverage.covered(tier),
+                              unit_coverage.total(tier))
+
+@register.simple_tag
+def unit_coverage_class(unit_coverage, tier=None):
+    return _coverage_class(unit_coverage.covered(tier),
+                           unit_coverage.total(tier))
+
+@register.simple_tag
+def area_coverage_fraction(area_coverage):
+    return _coverage_fraction(area_coverage['covered'],
+                              area_coverage['total'])
+
+@register.simple_tag
+def area_coverage_class(area_coverage):
+    return _coverage_class(area_coverage['covered'],
+                           area_coverage['total'])

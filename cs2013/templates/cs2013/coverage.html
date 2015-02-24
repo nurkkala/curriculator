@@ -21,7 +21,7 @@
     </thead>
     <tbody>
       {% for know_area in knowledge_areas %}
-	{% for coverage in know_area.coverage %}
+	{% for unit_coverage in know_area.knowledge_unit_coverage %}
 	  <tr>
 	    <td>
 	      {% ifchanged know_area %}
@@ -31,21 +31,21 @@
 	      {% endifchanged %}
 	    </td>
 	    <td>
-	      <a href="{% url 'know-area' know_area.pk %}#{{ coverage.know_unit.pk }}">
-		{{ coverage.know_unit }}
+	      <a href="{% url 'know-area' know_area.pk %}#{{ unit_coverage.know_unit.pk }}">
+		{{ unit_coverage.know_unit }}
 	      </a>
 	    </td>
-	    <td class="{% coverage_class coverage 1 %}">
-	      {% coverage_data coverage 1 %}
+	    <td class="{% unit_coverage_class unit_coverage 1 %}">
+	      {% unit_coverage_fraction unit_coverage 1 %}
 	    </td>
-	    <td class="{% coverage_class coverage 2 %}">
-	      {% coverage_data coverage 2 %}
+	    <td class="{% unit_coverage_class unit_coverage 2 %}">
+	      {% unit_coverage_fraction unit_coverage 2 %}
 	    </td>
-	    <td class="{% coverage_class coverage 3 %}">
-	      {% coverage_data coverage 3 %}
+	    <td class="{% unit_coverage_class unit_coverage 3 %}">
+	      {% unit_coverage_fraction unit_coverage 3 %}
 	    </td>
-	    <td class="{% coverage_class coverage %}">
-	      {% coverage_data coverage %}
+	    <td class="{% unit_coverage_class unit_coverage %}">
+	      {% unit_coverage_fraction unit_coverage %}
 	    </td>
 	  </tr>
 	{% endfor %}

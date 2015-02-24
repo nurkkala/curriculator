@@ -53,7 +53,7 @@ class KnowledgeArea(models.Model):
                               .filter(tier=n, knowledge_unit__knowledge_area=self) \
                               .order_by('knowledge_unit')
 
-    def coverage(self):
+    def knowledge_unit_coverage(self):
         all_coverage = [ ]
         coverage_by_pk = { }
 
@@ -67,6 +67,15 @@ class KnowledgeArea(models.Model):
                 coverage_by_pk[know_unit.pk].add_coverage(outcome.tier)
 
         return all_coverage
+
+    def coverage(self):
+        covered = 0
+        total = 0
+        for outcome in self.all_outcomes():
+            total += 1
+            if outcome.courses.count() > 0:
+                covered += 1
+        return { 'covered': covered, 'total': total }
 
 
 class KnowledgeUnit(models.Model):

@@ -77,8 +77,26 @@ def add_outcome(request):
     course.learning_outcomes.add(outcome)
     return HttpResponse("Added outcome {} to course {}".format(outcome_pk, course_pk))
 
+
+def coverage_by_tier():
+    """TODO: Should refactor outcome stuff from models file."""
+    tier_coverage = [ { 'covered': 0, 'total': 0 }, # All tiers
+                      { 'covered': 0, 'total': 0 },
+                      { 'covered': 0, 'total': 0 },
+                      { 'covered': 0, 'total': 0 } ]
+
+    for outcome in LearningOutcome.objects.all():
+        tier_coverage[outcome.tier]['total'] += 1
+        tier_coverage[0]['total'] += 1
+        if outcome.courses.count() > 0:
+            tier_coverage[outcome.tier]['covered'] += 1
+            tier_coverage[0]['covered'] += 1
+
+    return tier_coverage
+
 @login_required
 def coverage(request):
     knowledge_areas = KnowledgeArea.objects.prefetch_related('knowledge_units').all()
     return render(request, 'cs2013/coverage.html',
                   { 'knowledge_areas': knowledge_areas })
+
