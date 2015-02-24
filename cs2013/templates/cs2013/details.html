@@ -26,7 +26,13 @@
 		{{ outcome.knowledge_area }}</a>
 	    {% endifchanged %}
 	  </th>
-	  <th>{% ifchanged %}{{ outcome.knowledge_unit }}{% endifchanged %}</th>
+	  <th>
+	    {% ifchanged %}
+	      <a href="{% url 'know-area' outcome.knowledge_area.pk %}#{{ outcome.knowledge_unit.pk }}">
+		{{ outcome.knowledge_unit }}
+	      </a>
+	    {% endifchanged %}
+	  </th>
 	  <th>{{ outcome.get_tier_display }}</th>
 	  <td>{{ outcome.description }}</td>
 	  <td>

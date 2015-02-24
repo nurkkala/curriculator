@@ -1,6 +1,27 @@
 from django.db import models
 
 
+class KnowledgeUnitCoverage(object):
+    """Helper class for reporting coverage of knowledge units by courses."""
+    def __init__(self, know_unit):
+        self.know_unit = know_unit
+        self.tier_coverage = [ None,
+                               { 'covered': 0, 'total': 0 },
+                               { 'covered': 0, 'total': 0 },
+                               { 'covered': 0, 'total': 0 } ]
+        for outcome in know_unit.learning_outcomes.all():
+            self.tier_coverage[outcome.tier]['total'] += 1
+
+    def add_coverage(self, tier):
+        self.tier_coverage[tier]['covered'] += 1
+
+    def covered(self, tier):
+        return self.tier_coverage[tier]['covered']
+
+    def total(self, tier):
+        return self.tier_coverage[tier]['total']
+
+
 class KnowledgeArea(models.Model):
     abbreviation = models.CharField(max_length=8)
     name = models.CharField(max_length=256)
@@ -14,12 +35,29 @@ class KnowledgeArea(models.Model):
     def all_outcomes(self):
         return LearningOutcome.objects \
                               .filter(knowledge_unit__knowledge_area=self) \
+                              .select_related('knowledge_unit') \
+                              .prefetch_related('courses') \
                               .order_by('knowledge_unit', 'seq')
 
     def tier_n_outcomes(self, n):
         return LearningOutcome.objects \
                               .filter(tier=n, knowledge_unit__knowledge_area=self) \
                               .order_by('knowledge_unit')
+
+    def coverage(self):
+        all_coverage = [ ]
+        coverage_by_pk = { }
+
+        for know_unit in self.knowledge_units.all():
+            coverage = coverage_by_pk[know_unit.pk] = KnowledgeUnitCoverage(know_unit)
+            all_coverage.append(coverage)
+
+        for outcome in self.all_outcomes():
+            know_unit = outcome.knowledge_unit
+            if outcome.courses.count() > 0:
+                coverage_by_pk[know_unit.pk].add_coverage(outcome.tier)
+
+        return all_coverage
 
 
 class KnowledgeUnit(models.Model):

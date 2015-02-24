@@ -66,6 +66,7 @@ def remove_outcome(request, course_pk, outcome_pk):
     course.learning_outcomes.remove(outcome)
     return redirect('course-details', course_pk)
 
+@login_required
 def add_outcome(request):
     course_pk = request.POST['course_pk']
     outcome_pk = request.POST['outcome_pk']
@@ -75,3 +76,9 @@ def add_outcome(request):
 
     course.learning_outcomes.add(outcome)
     return HttpResponse("Added outcome {} to course {}".format(outcome_pk, course_pk))
+
+@login_required
+def coverage(request):
+    knowledge_areas = KnowledgeArea.objects.prefetch_related('knowledge_units').all()
+    return render(request, 'cs2013/coverage.html',
+                  { 'knowledge_areas': knowledge_areas })

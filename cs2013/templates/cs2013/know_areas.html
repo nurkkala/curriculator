@@ -59,13 +59,20 @@
     <tbody>
       {% for outcome in selected_area.all_outcomes %}
 	<tr>
-          <th>{% ifchanged %}{{ outcome.knowledge_unit }}{% endifchanged %}</th>
+	  {% ifchanged %}
+            <th id="{{ outcome.knowledge_unit.pk }}">
+	      {{ outcome.knowledge_unit }}
+	    </th>
+	  {% else %}
+	    <th></th>
+	  {% endifchanged %}
 	  <td>{{ outcome.get_tier_display }}</td>
           <td>{{ outcome }} ({{ outcome.get_mastery_level_display }})</td>
           <td>
 	    {% for course in outcome.courses.all %}
               <a href="{% url 'course-details' course.pk %}">
 		{{ course.unbreakable_designation|safe }}</a>
+	      {% if not forloop.last %}&bullet;{% endif %}
 	    {% endfor %}
 	  </td>
 	  <td>
