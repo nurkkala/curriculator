@@ -16,10 +16,19 @@ class KnowledgeUnitCoverage(object):
         self.tier_coverage[tier]['covered'] += 1
 
     def covered(self, tier):
-        return self.tier_coverage[tier]['covered']
+        if tier is not None:
+            return self.tier_coverage[tier]['covered']
+        else:
+            return self._all('covered')
 
     def total(self, tier):
-        return self.tier_coverage[tier]['total']
+        if tier is not None:
+            return self.tier_coverage[tier]['total']
+        else:
+            return self._all('total')
+
+    def _all(self, key):
+        return sum(self.tier_coverage[i][key] for i in (1, 2, 3))
 
 
 class KnowledgeArea(models.Model):

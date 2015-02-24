@@ -3,15 +3,16 @@ from django import template
 register = template.Library()
 
 @register.simple_tag
-def tier_coverage(coverage, tier):
+def coverage_data(coverage, tier=None):
     if coverage.total(tier):
         return "{}/{}".format(coverage.covered(tier),
                               coverage.total(tier))
     else:
         return "--"
 
+
 @register.simple_tag
-def coverage_class(coverage, tier):
+def coverage_class(coverage, tier=None):
     cov = coverage.covered(tier)
     tot = coverage.total(tier)
 

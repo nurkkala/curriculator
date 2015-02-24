@@ -16,6 +16,7 @@
 	<th>Tier 1</th>
 	<th>Tier 2</th>
 	<th>Electives</th>
+	<th>Total</th>
       </tr>
     </thead>
     <tbody>
@@ -35,13 +36,16 @@
 	      </a>
 	    </td>
 	    <td class="{% coverage_class coverage 1 %}">
-	      {% tier_coverage coverage 1 %}
+	      {% coverage_data coverage 1 %}
 	    </td>
 	    <td class="{% coverage_class coverage 2 %}">
-	      {% tier_coverage coverage 2 %}
+	      {% coverage_data coverage 2 %}
 	    </td>
 	    <td class="{% coverage_class coverage 3 %}">
-	      {% tier_coverage coverage 3 %}
+	      {% coverage_data coverage 3 %}
+	    </td>
+	    <td class="{% coverage_class coverage %}">
+	      {% coverage_data coverage %}
 	    </td>
 	  </tr>
 	{% endfor %}
