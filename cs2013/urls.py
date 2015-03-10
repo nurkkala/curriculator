@@ -1,4 +1,14 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
+
+from rest_framework import routers
+from cs2013 import views
+
+router = routers.DefaultRouter()
+router.register(r'areas', views.KnowledgeAreaViewSet)
+router.register(r'units', views.KnowledgeUnitViewSet)
+router.register(r'outcomes', views.LearningOutcomeViewSet)
+router.register(r'courses', views.CourseViewSet)
+
 
 urlpatterns = patterns(
     'cs2013.views',
@@ -17,4 +27,6 @@ urlpatterns = patterns(
     url(r'^remove-outcome/(?P<course_pk>\d+)/(?P<outcome_pk>\d+)/$',
         'remove_outcome', name='remove-outcome'),
     url(r'^add-outcome/$', 'add_outcome', name='add-outcome'),
+
+    url(r'^api/', include(router.urls))
 )

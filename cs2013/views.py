@@ -4,7 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from rest_framework import viewsets
+
 from .models import *
+from .serializers import *
 
 @login_required
 def home(request):
@@ -100,3 +103,20 @@ def coverage(request):
     return render(request, 'cs2013/coverage.html',
                   { 'knowledge_areas': knowledge_areas })
 
+#### API ################################################################
+
+class KnowledgeAreaViewSet(viewsets.ModelViewSet):
+    queryset = KnowledgeArea.objects.all()
+    serializer_class = KnowledgeAreaSerializer
+
+class KnowledgeUnitViewSet(viewsets.ModelViewSet):
+    queryset = KnowledgeUnit.objects.all()
+    serializer_class = KnowledgeUnitSerializer
+
+class LearningOutcomeViewSet(viewsets.ModelViewSet):
+    queryset = LearningOutcome.objects.all()
+    serializer_class = LearningOutcomeSerializer
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
