@@ -126,7 +126,7 @@ class Course(models.Model):
     credit_hours = models.IntegerField()
     name = models.CharField(max_length=256)
     learning_outcomes = models.ManyToManyField(LearningOutcome, related_name='courses')
-    completed = models.BooleanField()
+    completed = models.BooleanField(default=False)
 
     class Meta:
         ordering = [ 'designation' ]
