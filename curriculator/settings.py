@@ -40,7 +40,8 @@ INSTALLED_APPS = (
     'cs2013',
     'gunicorn',
     'debug_toolbar',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework_swagger',
 )
 
 MIDDLEWARE_CLASSES = (

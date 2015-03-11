@@ -9,7 +9,6 @@ router.register(r'units', views.KnowledgeUnitViewSet)
 router.register(r'outcomes', views.LearningOutcomeViewSet)
 router.register(r'courses', views.CourseViewSet)
 
-
 urlpatterns = patterns(
     'cs2013.views',
 
@@ -28,5 +27,7 @@ urlpatterns = patterns(
         'remove_outcome', name='remove-outcome'),
     url(r'^add-outcome/$', 'add_outcome', name='add-outcome'),
 
-    url(r'^api/', include(router.urls))
+    url(r'^api/', include(router.urls)),
+    url(r'^swag/', include('rest_framework_swagger.urls')),
+
 )

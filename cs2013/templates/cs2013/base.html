@@ -31,8 +31,28 @@
 	    <li>
 	      <a href="{% url 'know-area' 1 %}">Knowledge Areas</a>
 	    </li>
-	    <li>
-	      <a href="{% url 'coverage' %}">Coverage</a>
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="dropdown">
+		Reports <span class="caret"></span>
+	      </a>
+	      <ul class="dropdown-menu" role="menu">
+		<li>
+		  <a href="{% url 'coverage' %}">Coverage</a>
+		</li>
+	      </ul>
+	    </li>
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="dropdown">
+		Utilities <span class="caret"></span>
+	      </a>
+	      <ul class="dropdown-menu" role="menu">
+		<li>
+		  <a href="{% url 'api-root' %}">API</a>
+		</li>
+		<li>
+		  <a href="{% url 'django.swagger.base.view' %}">Swagger</a>
+		</li>
+	      </ul>
 	    </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
