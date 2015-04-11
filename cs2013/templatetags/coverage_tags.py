@@ -6,7 +6,7 @@ def _coverage_fraction(covered, total):
     if total:
         return "{}/{}".format(covered, total)
     else:
-        return "--"
+        return "&mdash;"
 
 def _coverage_class(covered, total):
     if total == 0:

@@ -23,13 +23,13 @@
       {% for know_area in knowledge_areas %}
 	{% for unit_coverage in know_area.knowledge_unit_coverage %}
 	  <tr>
-	    <td>
+	    <th>
 	      {% ifchanged know_area %}
 		<a href="{% url 'know-area' know_area.pk %}">
-		  {{ know_area.abbreviation }} - {{ know_area.name }}
+		    {{ know_area.abbreviation }} - {{ know_area.name }}
 		</a>
 	      {% endifchanged %}
-	    </td>
+	    </th>
 	    <td>
 	      <a href="{% url 'know-area' know_area.pk %}#{{ unit_coverage.know_unit.pk }}">
 		{{ unit_coverage.know_unit }}

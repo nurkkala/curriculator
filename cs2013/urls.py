@@ -29,5 +29,4 @@ urlpatterns = patterns(
 
     url(r'^api/', include(router.urls)),
     url(r'^swag/', include('rest_framework_swagger.urls')),
-
 )
