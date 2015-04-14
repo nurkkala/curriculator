@@ -152,6 +152,8 @@ def co_outcomes(request):
     non_empty_courses = seq_course_map.count
     non_empty_outcomes = seq_outcome_map.count
 
+    course_id = 0
+    co_course_id = 0
     context = { 'courses': [ ] }
 
     for course_idx in range(0, non_empty_courses):
@@ -181,9 +183,14 @@ def co_outcomes(request):
 
             context_co_course_data.append({ 'course': seq_course_map.idx_to_obj(co_course_idx),
                                             'weight': weight,
-                                            'outcomes': outcomes })
+                                            'outcomes': outcomes,
+                                            'unique_id': co_course_id })
+            co_course_id += 1
 
-        context['courses'].append(context_co_course_data)
+        context['courses'].append({ 'course': course,
+                                    'co_courses': context_co_course_data,
+                                    'unique_id': course_id })
+        course_id += 1
 
     return render(request, 'cs2013/co_outcomes.html', context)
 

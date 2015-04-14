@@ -4,11 +4,58 @@
 
 {% block content %}
   <div class="page-header">
-    <h1>Course Co-Outcomes</h1>
+    <h1>Course Co-Outcomes
+      <div class="btn-group">
+	<button type="button" class="btn btn-default dropdown-toggle"
+		data-toggle="dropdown" aria-expanded="false">
+	  Course <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+	  {% for course in courses %}
+	    <li><a href="#{{ course.course.id }}">{{ course.course }}</a></li>
+	  {% endfor %}
+	</ul>
+      </div>
+    </h1>
   </div>
 
   {% for course in courses %}
-    <p>{{ course.course }}</p>
+    <h2 id="{{ course.course.id }}">
+      {{ course.course }}
+      <a class="btn btn-primary btn-xs" href="#top-of-page">Top</a>
+    </h2>
+    <div class="panel-group" id="accordion-{{ course.unique_id }}"
+	 role="tablist" aria-multiselectable="true">
+      {% for co_course in course.co_courses %}
+	<div class="panel panel-default">
+	  <div class="panel-heading" role="tab" id="heading-{{ co_course.unique_id }}">
+	    <h4 class="panel-title">
+              <a data-toggle="collapse"
+		 data-parent="#accordion-{{ course.unique_id }}"
+		 href="#collapse-{{ co_course.unique_id }}"
+		 aria-expanded="true"
+		 aria-controls="collapse-{{ co_course.unique_id }}">
+		<span class="badge">{{ co_course.weight }}</span> {{ co_course.course }}
+              </a>
+	    </h4>
+	  </div>
+	  <div id="collapse-{{ co_course.unique_id }}"
+	       class="panel-collapse collapse" role="tabpanel"
+	       aria-labelledby="heading-{{ co_course.unique_id }}">
+	    <div class="panel-body">
+	      <ul>
+		{% for outcome in co_course.outcomes %}
+		  <li>
+		    {{ outcome }}
+		    ({{ outcome.get_tier_display }}&mdash;{{ outcome.get_mastery_level_display }})
+		  </li>
+		{% endfor %}
+	      </ul>
+	    </div>
+	  </div> {# panel-collapse #}
+	</div> {# panel #}
+      {% endfor %}
+    </div> {# panel-group #}
   {% endfor %}
 
 {% endblock %}
