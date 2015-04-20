@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect
 
 import numpy as np
 from rest_framework import viewsets
+from rest_framework.views import APIView
+from rest_framework.views import Response
 
 from .models import *
 from .serializers import *
@@ -194,6 +196,9 @@ def co_outcomes(request):
 
     return render(request, 'cs2013/co_outcomes.html', context)
 
+@login_required
+def bubbles(request):
+    return render(request, 'cs2013/bubbles.html', { })
 
 #### API ################################################################
 
@@ -212,3 +217,31 @@ class LearningOutcomeViewSet(viewsets.ModelViewSet):
 class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+
+class ListCoverage(APIView):
+    def get(self, request, tier, format=None):
+        areas = { }
+        for area in KnowledgeArea.objects.all():
+            areas[area.id] = { 'id': area.id,
+                               'name': area.name,
+                               'abbreviation': area.abbreviation,
+                               'courses': { } }
+
+        for outcome in LearningOutcome.objects \
+                                      .filter(tier=tier) \
+                                      .select_related('knowledge_unit__knowledge_area') \
+                                      .prefetch_related('courses'):
+            for course in outcome.courses.all():
+                area_id = outcome.knowledge_unit.knowledge_area.id
+                if course.id not in areas[area_id]['courses']:
+                    areas[area_id]['courses'][course.id] = {
+                        'id': course.id,
+                        'designation': course.designation,
+                        'outcomes': [ ] }
+                areas[area_id]['courses'][course.id]['outcomes'].append(outcome.id)
+
+        # Flatten dictionaries into lists.
+        for area in areas.itervalues():
+            area['courses'] = area['courses'].values()
+
+        return Response(areas.itervalues())

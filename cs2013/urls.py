@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url, include
 
 from rest_framework import routers
+
 from cs2013 import views
 
 router = routers.DefaultRouter()
@@ -23,6 +24,9 @@ urlpatterns = patterns(
     url(r'^reports/co-outcomes/$',
         'co_outcomes', name='co-outcomes'),
 
+    url(r'^reports/bubbles/$',
+        'bubbles', name='bubbles'),
+
     url(r'^know-area/(?P<area_pk>\d+)/$',
         'know_area', name='know-area'),
 
@@ -30,6 +34,7 @@ urlpatterns = patterns(
         'remove_outcome', name='remove-outcome'),
     url(r'^add-outcome/$', 'add_outcome', name='add-outcome'),
 
+    url(r'^api/coverage/(?P<tier>[123])/$', views.ListCoverage.as_view(), name='list-coverage'),
     url(r'^api/', include(router.urls)),
     url(r'^swag/', include('rest_framework_swagger.urls')),
 )
