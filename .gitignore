@@ -3,5 +3,5 @@
 *.sqlite3
 *~
 *.orig
-static/
+/static/
 .idea/
