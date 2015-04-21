@@ -225,14 +225,17 @@ class ListCoverage(APIView):
             areas[area.id] = { 'id': area.id,
                                'name': area.name,
                                'abbreviation': area.abbreviation,
+                               'outcomes': [ ],
                                'courses': { } }
 
         for outcome in LearningOutcome.objects \
                                       .filter(tier=tier) \
                                       .select_related('knowledge_unit__knowledge_area') \
                                       .prefetch_related('courses'):
+            area_id = outcome.knowledge_unit.knowledge_area.id
+            areas[area_id]['outcomes'].append(outcome.id)
+
             for course in outcome.courses.all():
-                area_id = outcome.knowledge_unit.knowledge_area.id
                 if course.id not in areas[area_id]['courses']:
                     areas[area_id]['courses'][course.id] = {
                         'id': course.id,

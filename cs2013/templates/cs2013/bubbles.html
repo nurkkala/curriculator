@@ -3,7 +3,12 @@
 
 {% block title %}Bubbles{% endblock %}
 
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/bubbles.css' %}">
+{% endblock %}
+
 {% block extra-javascript %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.7.0/lodash.js"></script>
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="{% static 'js/bubbles.js' %}"></script>
 {% endblock %}
@@ -13,6 +18,33 @@
     <h1>Bubbles</h1>
   </div>
 
-  <div id="bubbles">
-  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+	<th>Tier</th>
+	<th>CS 2013</th>
+	<th>TU CSE</th>
+      <tr>
+    </thead>
+    <tbody>
+      <tr>
+	<th>Tier 1</th>
+	<td id="cs2013-1"></td>
+	<td id="tu-cse-1"></td>
+      </tr>
+      <tr>
+	<th>Tier 2</th>
+	<td id="cs2013-2"></td>
+	<td id="tu-cse-2"></td>
+      </tr>
+      <tr>
+	<th>Electives</th>
+	<td id="cs2013-3"></td>
+	<td id="tu-cse-3"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Legend</h2>
+  <ul id="legend"></ul>
 {% endblock %}
