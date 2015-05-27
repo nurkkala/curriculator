@@ -1,0 +1,103 @@
+{% extends "cs2013/base.html" %}
+
+{% block title %}Cumulative Coverage{% endblock %}
+
+{% block content %}
+  <div class="page-header">
+    <h1>Cumulative Coverage</h1>
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group clearfix">
+      {% for field_group in form_field_groups %}
+	<div class="form-controls pull-left col-md-2" >
+	  {% for field in field_group %}
+	    <div>
+	      {{ field }}
+	      {{ field.label }}
+	    </div>
+	  {% endfor %}
+	</div>
+      {% endfor %}
+    </div>
+    <button class="btn btn-primary" type="submit">Filter</button>
+  </form>
+
+  {% if courses_selected %}
+
+  <h2>Summary ({{ courses_selected }} course{{ courses_selected | pluralize }})</h2>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+	<th>Tier</th>
+	<th>Covered</th>
+	<th>Not Covered</th>
+	<th>Coverage</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tier in coverage %}
+	<tr>
+	  <td>{{ tier.name }}</td>
+	  <td>{{ tier.count_covered }}</td>
+	  <td>{{ tier.count_not_covered }}</td>
+	  <td>{{ tier.percent_coverage }}</td>
+	</tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Covered</h2>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+	<th></th>
+	<th>Knowledge Area</th>
+	<th>Knowledge Unit</th>
+	<th>Outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tier in coverage %}
+	{% for outcome in tier.outcomes_covered %}
+	  <tr>
+	    <th>{% ifchanged %}{{ tier.name }}{% endifchanged %}</th>
+	    <td>{% ifchanged %}{{ outcome.knowledge_area}}{% endifchanged %}</td>
+	    <td>{% ifchanged %}{{ outcome.knowledge_unit }}{% endifchanged %}</td>
+	    <td>{{ outcome }}</td>
+	  </tr>
+	{% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Not Covered</h2>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+	<th></th>
+	<th>Knowledge Area</th>
+	<th>Knowledge Unit</th>
+	<th>Outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tier in coverage %}
+	{% for outcome in tier.outcomes_not_covered %}
+	  <tr>
+	    <th>{% ifchanged %}{{ tier.name }}{% endifchanged %}</th>
+	    <td>{% ifchanged %}{{ outcome.knowledge_area}}{% endifchanged %}</td>
+	    <td>{% ifchanged %}{{ outcome.knowledge_unit }}{% endifchanged %}</td>
+	    <td>{{ outcome }}</td>
+	  </tr>
+	{% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% else %}
+    <h2>Nothing selected</h2>
+  {% endif %}
+
+{% endblock %}

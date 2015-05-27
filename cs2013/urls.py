@@ -18,17 +18,12 @@ urlpatterns = patterns(
     url(r'^course-outcomes/(?P<course_pk>\d+)/(?P<page>\d+)/$',
         'course_outcomes', name='course-outcomes'),
 
-    url(r'^reports/coverage/$',
-        'coverage', name='coverage'),
+    url(r'^reports/coverage/$', 'coverage', name='coverage'),
+    url(r'^reports/co-outcomes/$', 'co_outcomes', name='co-outcomes'),
+    url(r'^reports/bubbles/$', 'bubbles', name='bubbles'),
+    url(r'^reports/what-if/$', 'what_if', name='what-if'),
 
-    url(r'^reports/co-outcomes/$',
-        'co_outcomes', name='co-outcomes'),
-
-    url(r'^reports/bubbles/$',
-        'bubbles', name='bubbles'),
-
-    url(r'^know-area/(?P<area_pk>\d+)/$',
-        'know_area', name='know-area'),
+    url(r'^know-area/(?P<area_pk>\d+)/$', 'know_area', name='know-area'),
 
     url(r'^remove-outcome/(?P<course_pk>\d+)/(?P<outcome_pk>\d+)/$',
         'remove_outcome', name='remove-outcome'),

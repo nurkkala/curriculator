@@ -12,6 +12,7 @@ from rest_framework.views import Response
 
 from .models import *
 from .serializers import *
+from .forms import *
 
 @login_required
 def home(request):
@@ -83,7 +84,6 @@ def add_outcome(request):
 
     course.learning_outcomes.add(outcome)
     return HttpResponse("Added outcome {} to course {}".format(outcome_pk, course_pk))
-
 
 def coverage_by_tier():
     """TODO: Should refactor outcome stuff from models file."""
@@ -199,6 +199,72 @@ def co_outcomes(request):
 @login_required
 def bubbles(request):
     return render(request, 'cs2013/bubbles.html', { })
+
+def coverage_for_selected_courses(query_dict):
+    all_outcomes = { }
+    for outcome in LearningOutcome.objects \
+                                  .all() \
+                                  .select_related('knowledge_unit__knowledge_area'):
+        all_outcomes[outcome.id] = outcome
+
+    outcome_id_covered = { }
+    courses_selected = 0
+    for course in Course.objects.all():
+        if course.designation in query_dict:
+            courses_selected += 1
+            for outcome in course.learning_outcomes.all():
+                outcome_id_covered[outcome.id] = 1
+
+    coverage = { }
+    for tier in (1, 2, 3):
+        coverage[tier] = { 'name': LearningOutcome.tier_display(tier),
+                           'outcomes_covered': [ ],
+                           'outcomes_not_covered': [ ] }
+
+    for outcome in all_outcomes.itervalues():
+        if outcome.id in outcome_id_covered:
+            coverage[outcome.tier]['outcomes_covered'].append(outcome)
+        else:
+            coverage[outcome.tier]['outcomes_not_covered'].append(outcome)
+
+    def percent_covered(count_covered, count_not_covered):
+        total = count_covered + count_not_covered
+        if total == 0:
+            percent = 0
+        else:
+            percent = count_covered / total * 100.0
+        return '{:.2f}%'.format(percent)
+
+    for tier in coverage.itervalues():
+        tier['count_covered'] = len(tier['outcomes_covered'])
+        tier['count_not_covered'] = len(tier['outcomes_not_covered'])
+        tier['percent_coverage'] = percent_covered(tier['count_covered'],
+                                                   tier['count_not_covered'])
+    return courses_selected, [ coverage[i] for i in (1, 2, 3) ]
+
+@login_required
+def what_if(request):
+
+    def split_into_sublists(arr, n):
+        "Split 'arr' into sublists each containing 'n' elements."
+        return [arr[i : i + n] for i in range(0, len(arr), n)]
+
+    coverage = [ ]
+    courses_selected = None
+
+    if request.method == 'POST':
+        form = CourseCheckForm(request.POST)
+        courses_selected, coverage = coverage_for_selected_courses(request.POST)
+    else:
+        form = CourseCheckForm()
+
+    all_fields = [ field for field in form ]
+    form_field_groups = split_into_sublists(all_fields, 9)
+
+    return render(request, 'cs2013/what_if.html',
+                  { 'form_field_groups' : form_field_groups,
+                    'courses_selected' : courses_selected,
+                    'coverage': coverage })
 
 #### API ################################################################
 
